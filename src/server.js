@@ -37,11 +37,17 @@ app.get('/productos', (req, res) => {
 app.get('/usuarios/:id', (req, res) => {
   const id = Number(req.params.id);
 
-  const usuario = usuarios.find(
-    (usuario) => usuario.id === id
-  );
+  const usuario = usuarios.find((usuario) => usuario.id === id);
 
-  res.status(200).json(usuario);
+  if (!usuario) {
+    return res.status(404).send('Usuario no encontrado');
+  }
+
+  return res.status(200).json(usuario);
+});
+
+app.use((req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = app;
