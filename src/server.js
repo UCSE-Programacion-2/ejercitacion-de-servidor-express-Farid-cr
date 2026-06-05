@@ -34,4 +34,14 @@ app.get('/productos', (req, res) => {
   return res.status(200).json(productos);
 });
 
+app.get('/usuarios/:id', (req, res) => {
+  const id = Number(req.params.id);
+
+  const usuario = usuarios.find(
+    (usuario) => usuario.id === id
+  );
+
+  res.status(200).json(usuario);
+});
+
 module.exports = app;
