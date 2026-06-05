@@ -15,5 +15,8 @@ const usuarios = [
 ];
 
 // TODO: Define tus rutas aquí
+app.get('/', (req, res) => {
+  res.status(200).send('Bienvenid@s a nuestro servidor Express!');
+});
 
 module.exports = app;
