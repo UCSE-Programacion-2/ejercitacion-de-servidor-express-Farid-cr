@@ -19,8 +19,19 @@ app.get('/', (req, res) => {
   res.status(200).send('Bienvenid@s a nuestro servidor Express!');
 });
 
+
 app.get('/productos', (req, res) => {
-  res.status(200).json(productos);
+  const { categoria } = req.query;
+
+  if (categoria) {
+    const productosFiltrados = productos.filter(
+      (producto) => producto.categoria === categoria
+    );
+
+    return res.status(200).json(productosFiltrados);
+  }
+
+  return res.status(200).json(productos);
 });
 
 module.exports = app;
